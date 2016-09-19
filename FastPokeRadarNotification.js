@@ -42,7 +42,7 @@ setInterval(function(){
       }
     });
   }else{
-  var notification=new Notification('Nothing appears...');
+  var notification=new Notification('Nothing appears...',{silent:true});
   setTimeout(function(){
     notification.close();
   },1000);
