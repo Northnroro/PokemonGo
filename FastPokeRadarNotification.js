@@ -28,9 +28,9 @@ setInterval(function(){
             }
           }
         }
-        var notification=new Notification('A wild '+pokemonNames[num]+' appears '+parseInt(minDist*1000)+'m. away! ('+minute+':'+(second<10?'0'+second:second)+')',{
+        var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
           icon:'data:image/png;base64,'+pokemonPNG[num],
-          body:'Tap to reset notification.',
+          body:'It is ' + parseInt(minDist*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left.)',
         });
         notification.onclick=function(){
           notidict={};
