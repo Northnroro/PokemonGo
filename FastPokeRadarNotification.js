@@ -6,7 +6,7 @@ setInterval(function(){
 },10000);
 setInterval(function(){
   if($('.nearby').is(':visible')){
-    $('nearby').hide();
+    $('.nearby').hide();
     $('.nearby').find('img').each(function(){
       var src=$(this).attr('src');
       var num=pokemonPNG.indexOf(src.substring(src.indexOf(',')+1));
