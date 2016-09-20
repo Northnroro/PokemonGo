@@ -24,7 +24,8 @@ setInterval(function(){
       var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
       if(dist < 1000){
         var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
-          icon:'data:image/png;base64,'+pokemonPNG[num],
+          //icon:'data:image/png;base64,'+pokemonPNG[num],
+          icon: 'http://maps.googleapis.com/maps/api/staticmap?center='+marker.lat+','+marker.lng+'&zoom=16&size=128x128',
           body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
         });
         notification.onclick=function(){
