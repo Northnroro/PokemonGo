@@ -26,7 +26,7 @@ setInterval(function(){
       var first = true;
       if(dist < 750){
         notidict[markerId]=true;
-        var interval = setInterval(function(){
+        //var interval = setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
           var minute=parseInt(fulltime/60);
           var second=parseInt(fulltime-minute*60);
@@ -41,9 +41,9 @@ setInterval(function(){
             notification.onclick=function(){
               notification.close();
             };
-          }
+        //  }
           first = false;
-        },10000);
+        //},10000);
         //setTimeout(clearInterval,expDate-Date.now(),interval);
       }
     }
