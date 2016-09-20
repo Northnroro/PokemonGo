@@ -18,7 +18,7 @@ setInterval(function(){
       if(dist < 1000){
         var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
           icon:'data:image/png;base64,'+pokemonPNG[num],
-          body:'It is ' + parseInt(minDist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+          body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
         });
         notification.onclick=function(){
           notification.close();
