@@ -32,7 +32,7 @@ setInterval(function(){
           var second=parseInt(fulltime-minute*60);
           var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
             icon:pkmnimg,
-          body:'It is ' + parseInt(getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+          body:'It is ' + parseInt(dist)*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
           tag:markerId,
           renotify:true,
           silent:!first,
@@ -41,7 +41,7 @@ setInterval(function(){
             notification.close();
           };
           first = false;
-        },10000);
+        },5000);
         setTimeout(function(){clearInterval(interval);},expDate-Date.now());
       }
     }
