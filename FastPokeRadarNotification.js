@@ -23,6 +23,7 @@ setInterval(function(){
       pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
       pkmnimg = imageToDataUri(pkmnimg);
       var expDate = parseInt(shownMarker[index].expire);
+      var first = true;
       if(dist < 750){
         var interval = setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
@@ -30,14 +31,15 @@ setInterval(function(){
           var second=parseInt(fulltime-minute*60);
           var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
             icon:pkmnimg,
-          //icon: 'http://maps.googleapis.com/maps/api/staticmap?center='+marker.lat+','+marker.lng+'&zoom=15&size=64x64',
           body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
           tag:markerId,
           renotify:true,
+          silent:!first,
         });
           notification.onclick=function(){
             notification.close();
           };
+          first = false;
         },1000);
         setTimeout(clearInterval,fulltime*1000,interval);
       }
