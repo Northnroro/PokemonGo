@@ -60,11 +60,11 @@ function imageToDataUri(img) {
         ctx = canvas.getContext('2d');
 
     // set its dimension to target size
-    canvas.width = 64;
-    canvas.height = 64;
+    canvas.width =128;
+    canvas.height = 128;
 
     // draw source image into the off-screen canvas:
-    ctx.drawImage(img, -10, -10, 74, 74);
+    ctx.drawImage(img, -5, -5, 138, 138);
 
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
