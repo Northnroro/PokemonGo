@@ -22,10 +22,13 @@ setInterval(function(){
       var minute=parseInt(fulltime/60);
       var second=parseInt(fulltime-minute*60);
       var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
-      if(dist < 1000){
+      var pkmnimg = new Image;
+      pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
+      pkmnimg = imageToDataUri(pkmnimg,64,64);
+      if(dist < 750){
         var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
-          //icon:'data:image/png;base64,'+pokemonPNG[num],
-          icon: 'http://maps.googleapis.com/maps/api/staticmap?center='+marker.lat+','+marker.lng+'&zoom=16&size=128x128',
+          icon:pkmnimg,
+          //icon: 'http://maps.googleapis.com/maps/api/staticmap?center='+marker.lat+','+marker.lng+'&zoom=15&size=64x64',
           body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
         });
         notification.onclick=function(){
@@ -48,4 +51,21 @@ function getDistance(lat1,lon1,lat2,lon2) {
 
 function deg2rad(deg) {
   return deg*(Math.PI/180);
+}
+
+function imageToDataUri(img, width, height) {
+
+    // create an off-screen canvas
+    var canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d');
+
+    // set its dimension to target size
+    canvas.width = width;
+    canvas.height = height;
+
+    // draw source image into the off-screen canvas:
+    ctx.drawImage(img, 0, 0, width, height);
+
+    // encode image to data-uri with base64 version of compressed image
+    return canvas.toDataURL();
 }
