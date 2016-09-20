@@ -32,7 +32,7 @@ setInterval(function(){
           var second=parseInt(fulltime-minute*60);
           var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
             icon:pkmnimg,
-          body:'It is ' + parseInt(dist)*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+          body:'It is ' + parseInt(dist)*1000 + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
           tag:markerId,
           renotify:true,
           silent:!first,
