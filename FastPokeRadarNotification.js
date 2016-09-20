@@ -1,9 +1,10 @@
 document.title='[AUTO]'+document.title;
 Notification.requestPermission();
 var notidict={};
+var center=map.getCenter();
 setInterval(function(){
   map.locate();
-  var center = map.getCenter();
+  center = map.getCenter();
   var delay = 0;
   for(var i=-2;i<=2;i++){
     for(var j=-2;j<=2;j++){
@@ -19,7 +20,7 @@ setInterval(function(){
     if(!filterdict[num] && !notidict[markerId]){
       var marker=shownMarker[index].marker._latlng;
       notidict[markerId]=true;
-      var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
+      var dist=getDistance(center.lat,center.lng,marker.lat,marker.lng)*1000;
       var pkmnimg = new Image;
       pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
       pkmnimg = imageToDataUri(pkmnimg);
@@ -32,7 +33,7 @@ setInterval(function(){
           var second=parseInt(fulltime-minute*60);
           var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
             icon:pkmnimg,
-          body:'It is ' + parseInt(getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+          body:'It is ' + parseInt(getDistance(center.lat,ccenter.lng,marker.lat,marker.lng)*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
           tag:markerId,
           renotify:true,
           silent:!first,
@@ -41,8 +42,8 @@ setInterval(function(){
             notification.close();
           };
           first = false;
-        },5000);
-        setTimeout(clearInterval,expDate-Date.now(),interval);
+        },10000);
+        setTimeout(function(){clearInterval(interval);},expDate-Date.now());
       }
     }
   }
