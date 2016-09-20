@@ -18,7 +18,6 @@ setInterval(function(){
     var markerId = shownMarker[index].id;
     if(!filterdict[num] && !notidict[markerId]){
       var marker=shownMarker[index].marker._latlng;
-      notidict[markerId]=true;
       var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
       var pkmnimg = new Image;
       pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
@@ -26,6 +25,7 @@ setInterval(function(){
       var expDate = parseInt(shownMarker[index].expire);
       var first = true;
       if(dist < 750){
+        notidict[markerId]=true;
         var interval = setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
           var minute=parseInt(fulltime/60);
