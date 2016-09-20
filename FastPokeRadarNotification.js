@@ -3,7 +3,14 @@ Notification.requestPermission();
 var notidict={};
 setInterval(function(){
   map.locate();
-},5000);
+  var center = map.getCenter();
+  var delay = 0;
+  for(var i=-2;i<=2;i++){
+    for(var j=-2;j<=2;j++){
+      setTimeout(getPokemon,delay++*500,center.lat+0.002*i,center.lng+0.002*j);
+    }
+  }
+},15000);
 setInterval(function(){
   for(var index in shownMarker){
     var num = shownMarker[index].marker.options.icon.options.pokemonid;
