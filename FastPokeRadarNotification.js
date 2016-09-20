@@ -30,19 +30,21 @@ setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
           var minute=parseInt(fulltime/60);
           var second=parseInt(fulltime-minute*60);
-          var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
-            icon:pkmnimg,
-          body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
-          tag:markerId,
-          renotify:true,
-          silent:!first,
-        });
-          notification.onclick=function(){
-            notification.close();
-          };
+          if(fulltime >= 0){
+            var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
+              icon:pkmnimg,
+              body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+              tag:markerId,
+              renotify:true,
+              silent:!first,
+            });
+            notification.onclick=function(){
+              notification.close();
+            };
+          }
           first = false;
         },10000);
-        setTimeout(clearInterval,expDate-Date.now(),interval);
+        //setTimeout(clearInterval,expDate-Date.now(),interval);
       }
     }
   }
