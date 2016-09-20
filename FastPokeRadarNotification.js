@@ -70,7 +70,7 @@ function imageToDataUri(img) {
     canvas.height = 128;
 
     // draw source image into the off-screen canvas:
-    ctx.drawImage(img, 0, 0, 128, 128);
+    ctx.drawImage(img, 0, 0, 128, Math.min(img.width,img.height)*128/img.width);
 
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
