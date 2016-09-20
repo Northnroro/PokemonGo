@@ -18,22 +18,28 @@ setInterval(function(){
     if(!filterdict[num] && !notidict[markerId]){
       var marker=shownMarker[index].marker._latlng;
       notidict[markerId]=true;
-      var fulltime=(parseInt(shownMarker[index].expire)-Date.now())/1000;
-      var minute=parseInt(fulltime/60);
-      var second=parseInt(fulltime-minute*60);
       var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
       var pkmnimg = new Image;
       pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
       pkmnimg = imageToDataUri(pkmnimg);
+      var expDate = parseInt(shownMarker[index].expire);
       if(dist < 750){
-        var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
-          icon:pkmnimg,
+        var interval = setInterval(function(){
+          var fulltime=(expDate-Date.now())/1000;
+          var minute=parseInt(fulltime/60);
+          var second=parseInt(fulltime-minute*60);
+          var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
+            icon:pkmnimg,
           //icon: 'http://maps.googleapis.com/maps/api/staticmap?center='+marker.lat+','+marker.lng+'&zoom=15&size=64x64',
           body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
+          tag:markerId,
+          renotify:true,
         });
-        notification.onclick=function(){
-          notification.close();
-        };
+          notification.onclick=function(){
+            notification.close();
+          };
+        },1000);
+        setTimeout(clearInterval,fulltime*1000,interval);
       }
     }
   }
@@ -57,15 +63,15 @@ function imageToDataUri(img) {
 
     // create an off-screen canvas
     var canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
 
     // set its dimension to target size
-    canvas.width =128;
+    canvas.width = 128;
     canvas.height = 128;
 
     // draw source image into the off-screen canvas:
-    ctx.drawImage(img, -5, -5, 138, 138);
+    ctx.drawImage(img, 0, 0, 128, 128);
 
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
-}
+  }
