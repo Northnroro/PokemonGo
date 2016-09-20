@@ -3,51 +3,30 @@ Notification.requestPermission();
 var notidict={};
 setInterval(function(){
   map.locate();
-},10000);
+},5000);
 setInterval(function(){
-  if($('.nearby').is(':visible')){
-    $('.nearby').hide();
-    $('.nearby').find('img').each(function(){
-      var src=$(this).attr('src');
-      var num=pokemonPNG.indexOf(src.substring(src.indexOf(',')+1));
-      if(!filterdict[num]&&!notidict[num]){
-        notidict[num]=true;
-        var fulltime=60*15*1000;
-        var minute='-';
-        var second='--';
-        var minDist=9999;
-        for(var index in shownMarker){
-          if(shownMarker[index].marker.options.icon.options.pokemonid==num){
-            var marker=shownMarker[index].marker._latlng;
-            var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng);
-            if(dist<minDist){
-              minDist=dist;
-              fulltime=(parseInt(shownMarker[index].expire)-Date.now())/1000;
-              minute=parseInt(fulltime/60);
-              second=parseInt(fulltime-minute*60);
-            }
-          }
-        }
+  for(var index in shownMarker){
+    var num = shownMarker[index].marker.options.icon.options.pokemonid;
+    var markerId = shownMarker[index].id;
+    if(!filterdict[num] && !notidict[markerId]){
+      var marker=shownMarker[index].marker._latlng;
+      notidict[markerId]=true;
+      var fulltime=(parseInt(shownMarker[index].expire)-Date.now())/1000;
+      var minute=parseInt(fulltime/60);
+      var second=parseInt(fulltime-minute*60);
+      var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
+      if(dist < 1000){
         var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
           icon:'data:image/png;base64,'+pokemonPNG[num],
-          body:'It is ' + parseInt(minDist*1000) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left.)',
+          body:'It is ' + parseInt(minDist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
         });
         notification.onclick=function(){
-          notidict={};
           notification.close();
         };
-        setTimeout(function(){
-          notification.close();
-        },fulltime*1000);
       }
-    });
-  }else{
-  //var notification=new Notification('Nothing appears...',{silent:true});
-  //setTimeout(function(){
-  //  notification.close();
-  //},1000);
-}
-},5000);
+    }
+  }
+},3000);
 
 function getDistance(lat1,lon1,lat2,lon2) {
   var R=6371;
