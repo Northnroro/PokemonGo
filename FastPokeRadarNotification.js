@@ -41,7 +41,7 @@ setInterval(function(){
             notification.onclick=function(){
               notification.close();
             };
-        //  }
+          }
           first = false;
         //},10000);
         //setTimeout(clearInterval,expDate-Date.now(),interval);
