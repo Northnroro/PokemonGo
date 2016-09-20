@@ -41,8 +41,8 @@ setInterval(function(){
             notification.close();
           };
           first = false;
-        },5000);
-        setTimeout(function(){clearInterval(interval);},expDate-Date.now());
+        },10000);
+        setTimeout(clearInterval,expDate-Date.now(),interval);
       }
     }
   }
