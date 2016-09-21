@@ -24,7 +24,7 @@ setInterval(function(){
       pkmnimg = imageToDataUri(pkmnimg);
       var expDate = parseInt(shownMarker[index].expire);
       var first = true;
-      if(dist < 750){
+      if(dist < 700 || (dist < 750 && (expDate-Date.now())/1000 > 13*60)){
         notidict[markerId]=true;
         //var interval = setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
