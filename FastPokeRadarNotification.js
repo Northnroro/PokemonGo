@@ -7,7 +7,10 @@ setInterval(function(){
   var delay = 0;
   for(var i=-2;i<=2;i++){
     for(var j=-2;j<=2;j++){
-      setTimeout(getPokemon,delay++*500,center.lat+0.002*i,center.lng+0.002*j);
+      setTimeout(getPokemon,delay*500,center.lat+0.002*i,center.lng+0.002*j);
+      setTimeout(throttledLoadCache,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+      setTimeout(marker.setLatLng,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+      setTimeout(circle.setLatLng,delay++*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
     }
   }
 },15000);
