@@ -15,4 +15,4 @@ function keepScanning(){
 function setPos(x){
  circle.setLatLng(x);
 }
-alert("Please Type \"javascript:keepScanning\" in URL box to start.")
+alert("Please Type \"javascript:keepScanning()\" in URL box to start.")
