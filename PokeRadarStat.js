@@ -40,10 +40,10 @@ function cacheOutput(){
 				output += ",";
 			}
 			output += "{";
-			output += "id:\""+shownMarker[i].id+"\",";
-			output += "pokemon_id:\""+shownMarker[i].marker.options.icon.options.pokemonid+"\",";
-			output += "latitude:\""+shownMarker[i].marker._latlng.lat+"\",";
-			output += "latitude:\""+shownMarker[i].marker._latlng.lng+"\"";
+			output += "\"id\":\""+shownMarker[i].id+"\",";
+			output += "\"pokemon_id\":\""+shownMarker[i].marker.options.icon.options.pokemonid+"\",";
+			output += "\"latitude\":\""+shownMarker[i].marker._latlng.lat+"\",";
+			output += "\"latitude\":\""+shownMarker[i].marker._latlng.lng+"\"";
 			output += "}";
 		}
 	}
