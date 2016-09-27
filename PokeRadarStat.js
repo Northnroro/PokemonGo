@@ -49,7 +49,7 @@ function cacheOutput(){
 	}
 }
 function getOutput(){
-	var textToWrite = "{pokemons:[" + output + "]}";
+	var textToWrite = "{\"pokemons\":[" + output + "]}";
     var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
     var fileNameToSaveAs = "pokemon_json.txt";
     var downloadLink = document.createElement("a");
