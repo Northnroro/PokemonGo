@@ -1,9 +1,9 @@
 
 $('.desktop-header').remove();
 $('.adroom').remove();
-$('#map').css('width','800px');
-$('#map').css('height','800px');
-var pos = new L.LatLng(13.77,100.55);
+$('#map').css('width','900px');
+$('#map').css('height','900px');
+var pos = new L.LatLng(13.765,100.545);
 setTimeout(function(){
 	map.setView(pos,13);
 	//marker.setLatLng(pos);
@@ -13,7 +13,7 @@ setTimeout(function(){
 },1000);
 function keepScanning(){
 	var cacheCount = 0;
-	var delay = 200;
+	var delay = 500;
 	var bound = map.getBounds();
 	var extra = false;
 	for(var i=bound._southWest.lat; i<bound._northEast.lat; i+=0.01) {
