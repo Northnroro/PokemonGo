@@ -15,6 +15,8 @@ setInterval(function(){
   }
 },15000);
 
+var distDict = [];
+
 setInterval(function(){
   for(var index in shownMarker){
     var num = shownMarker[index].marker.options.icon.options.pokemonid;
@@ -27,7 +29,13 @@ setInterval(function(){
       pkmnimg = imageToDataUri(pkmnimg);
       var expDate = parseInt(shownMarker[index].expire);
       var first = true;
-      if(dist < 700 || (dist < 750 && (expDate-Date.now())/1000 > 13*60)){
+      var threshold = 700;
+      if(distDict[num]){
+        threshold = distDict[num];
+      }else if(distDict[pokemonNames[num]]){
+        threshold = distDict[pokemonNames[num]];
+      }
+      if(dist < threshold || (dist < threshold+50 && (expDate-Date.now())/1000 > 13*60)){
         notidict[markerId]=true;
         //var interval = setInterval(function(){
           var fulltime=(expDate-Date.now())/1000;
@@ -82,4 +90,8 @@ function imageToDataUri(img) {
 
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
-  }
+}
+
+function assignDist(name, distance){
+  distDict[name] = distance;
+}
