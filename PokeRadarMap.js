@@ -22,6 +22,11 @@ function setPos(x){
 var sentData = [];
 var pokemonList = [];
 var markerList = [];
+var markerDict = [];
+for(var i=1;i<=151;i++){
+	markerDict[i] = true;
+}
+
 function cacheOutput(){
 	for(var i in shownMarker){
 		if(!sentData[shownMarker[i].id]){
@@ -58,19 +63,19 @@ function redrawMarker(){
 		}
 		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count > max * 0.3){
+			if(count > max * 0.3 && !filterdict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 				var elementTime=$(pokeMarker._icon).find(".remainingtext");
 				elementTime.html(count+"");
-				var amount = parseInt(count*9/max);
-				elementTime.css('background-color','#D'+(9-amount)+'0');
+				var amount = parseInt(count*9/(max+10));
+				elementTime.css('background-color','#D'+(10-amount)+'0');
 				markerList.push(pokeMarker);
 			}
 		}
 	}
 }
 
-setInterval(cacheOutput,10000);
-alert("Please type javascript:scan() in URL box.");
+setInterval(cacheOutput,5000);
+alert("Please type javascript:scan(); in URL box to start scan.\nmarkerDict[POKEMON_NUMBER]=true/false; to set visible.");
