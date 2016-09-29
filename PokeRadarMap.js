@@ -91,4 +91,4 @@ function redrawMarker(){
 }
 
 setInterval(cacheOutput,60000);
-alert("Please type javascript:scan(); in URL box to start scan.\nresetDict() and addDict(num) to set visible.");
+scan();
