@@ -25,14 +25,17 @@ var markerList = [];
 var markerDict = [];
 function resetDict(){
 	markerDict = [];
+	cacheOutput();
 }
 function allDict(){
 	for(var i=1;i<=151;i++){
 		markerDict[i] = true;
 	}
+	cacheOutput();
 }
 function addDict(x){
 	markerDict[x] = true;
+	cacheOutput();
 }
 function cacheOutput(){
 	for(var i in shownMarker){
@@ -87,5 +90,5 @@ function redrawMarker(){
 	}
 }
 
-setInterval(cacheOutput,5000);
+setInterval(cacheOutput,60000);
 alert("Please type javascript:scan(); in URL box to start scan.\nresetDict() and addDict(num) to set visible.");
