@@ -1,4 +1,5 @@
-
+$('.desktop-header').remove();
+$('.adroom').remove();
 var offset = 0;
 function scan(){
 	var cacheCount = 0;
