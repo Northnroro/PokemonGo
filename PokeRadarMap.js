@@ -26,7 +26,12 @@ var markerDict = [];
 for(var i=1;i<=151;i++){
 	markerDict[i] = true;
 }
-
+function resetDict(){
+	markerDict = [];
+}
+function addDict(x){
+	markerDict[x] = true;
+}
 function cacheOutput(){
 	for(var i in shownMarker){
 		if(!sentData[shownMarker[i].id]){
@@ -63,7 +68,7 @@ function redrawMarker(){
 		}
 		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count > max * 0.3 && !filterdict[num]){
+			if(count > max * 0.3 && !markerDict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
