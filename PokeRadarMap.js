@@ -1,6 +1,7 @@
 $('.desktop-header').remove();
 $('.adroom').remove();
 var offset = 0;
+var pauseVar = false;
 function scan(){
 	var cacheCount = 0;
 	var bound = map.getBounds();
@@ -14,18 +15,28 @@ function scan(){
 		extra = !extra;
 	}
 	offset = (offset+0.003)%0.01;
-	setTimeout(scan,cacheCount*200);
+	if(!pauseVar){
+		setTimeout(scan,cacheCount*200);
+	}else{
+		pauseVar = false;
+	}
 }
 function setPos(x){
  circle.setLatLng(x);
+}
+
+function pause(){
+	pauseVar = true;
 }
 
 var sentData = [];
 var pokemonList = [];
 var markerList = [];
 var markerDict = [];
+var currentPokemon = 0;
 function resetDict(){
 	markerDict = [];
+	currentPokemon = 0;
 	redrawMarker();
 }
 function allDict(){
@@ -37,6 +48,16 @@ function allDict(){
 function addDict(x){
 	markerDict[x] = true;
 	redrawMarker();
+}
+function nextDict(){
+	if(currentPokemon == 0 || (markerDict[currentPokemon] && pokemonNames[currentPokemon])){
+		if(markerDict[currentPokemon]){
+			markerDict[currentPokemon] = false;
+		}
+		currentPokemon++;
+		markerDict[currentPokemon] = true;
+		redrawMarker();
+	}
 }
 function cacheOutput(){
 	for(var i in shownMarker){
