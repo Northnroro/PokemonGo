@@ -25,17 +25,17 @@ var markerList = [];
 var markerDict = [];
 function resetDict(){
 	markerDict = [];
-	cacheOutput();
+	redrawMarker();
 }
 function allDict(){
 	for(var i=1;i<=151;i++){
 		markerDict[i] = true;
 	}
-	cacheOutput();
+	redrawMarker();
 }
 function addDict(x){
 	markerDict[x] = true;
-	cacheOutput();
+	redrawMarker();
 }
 function cacheOutput(){
 	for(var i in shownMarker){
@@ -46,20 +46,19 @@ function cacheOutput(){
 			var pokelng = shownMarker[i].marker._latlng.lng;
 			var hashpos = parseInt(pokelat*100)+","+parseInt(pokelng*100);
 			if(!pokemonList[pokeid]){
-				pokemonList[pokeid] = [];
+				pokemonList[pokeid] = {};
 			}
 			if(!pokemonList[pokeid][hashpos]){
 				pokemonList[pokeid][hashpos] = {lat:0, lng:0, count:0};
 			}
 			var old = pokemonList[pokeid][hashpos];
-			pokemonList[pokeid][hashpos] = {lat:(old.lat*old.count+pokelat)/(old.count+1),lng:(old.lng*old.count+pokelng)/(old.count+1),count:old.count+1};
+			pokemonList[pokeid][hashpos] = {lat:parseInt((old.lat*old.count+pokelat)/(old.count+1)*10000)/10000,lng:parseInt((old.lng*old.count+pokelng)/(old.count+1)*10000)/10000,count:old.count+1};
 		}
 	}
 	for(var i in shownMarker){
 		shownMarker[i].marker.remove();
 	}
 	shownMarker = [];
-	redrawMarker();
 }
 
 function redrawMarker(){
@@ -91,10 +90,22 @@ function redrawMarker(){
 	}
 }
 
+function getOutput(){
+	var textToWrite = JSON.stringify(pokemonList);
+    var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    var fileNameToSaveAs = "pokemon_map.json";
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    downloadLink.click();
+	output = "";
+}
+
 setInterval(cacheOutput,1000);
 setInterval(redrawMarker,30000);
 scan();
 addDict(1);
 addDict(4);
 addDict(7);
+addDict(10);
 addDict(25);
