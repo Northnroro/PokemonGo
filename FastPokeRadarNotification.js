@@ -20,6 +20,7 @@ function setPos(x){
 }
 
 var distDict = [];
+var popup = false;
 
 setInterval(function(){
   for(var index in shownMarker){
@@ -46,6 +47,9 @@ setInterval(function(){
           var minute=parseInt(fulltime/60);
           var second=parseInt(fulltime-minute*60);
           if(fulltime >= 0){
+            if(popup){
+              alert('A wild '+pokemonNames[num]+' appears!\n' + 'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)');
+            }
             var notification=new Notification('A wild '+pokemonNames[num]+' appears!',{
               icon:pkmnimg,
               body:'It is ' + parseInt(dist) + 'm. away! ('+minute+':'+(second<10?'0'+second:second) + ' left)',
@@ -96,6 +100,6 @@ function imageToDataUri(img) {
     return canvas.toDataURL();
 }
 
-function assignDist(name, distance){
+function setDistance(name, distance){
   distDict[name] = distance;
 }
