@@ -74,8 +74,8 @@ function redrawMarker(){
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 				var elementTime=$(pokeMarker._icon).find(".remainingtext");
 				elementTime.html(count+"");
-				var amount = parseInt(count*9/(max+10));
-				elementTime.css('background-color','#D'+(10-amount)+'0');
+				var amount = parseInt(count*9/(max+5));
+				elementTime.css('background-color','#D'+(9-amount)+'0');
 				markerList.push(pokeMarker);
 			}
 		}
