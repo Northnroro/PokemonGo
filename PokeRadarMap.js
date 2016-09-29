@@ -58,6 +58,7 @@ function cacheOutput(){
 	for(var i in shownMarker){
 		shownMarker[i].marker.remove();
 	}
+	shownMarker = [];
 	redrawMarker();
 }
 
@@ -90,7 +91,8 @@ function redrawMarker(){
 	}
 }
 
-setInterval(cacheOutput,20000);
+setInterval(cacheOutput,1000);
+setInterval(redrawMarker,30000);
 scan();
 addDict(1);
 addDict(4);
