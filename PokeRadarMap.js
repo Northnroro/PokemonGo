@@ -76,7 +76,7 @@ function redrawMarker(){
 		}
 		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count >= max * 0.2 && markerDict[num]){
+			if(count >= max * 0.3 && markerDict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
