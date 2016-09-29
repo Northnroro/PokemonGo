@@ -4,15 +4,17 @@ var notidict={};
 var center = map.getCenter();
 setInterval(function(){
   map.locate();
-  center = map.getCenter();
-  var delay = 0;
-  for(var i=-2;i<=2;i++){
-    for(var j=-2;j<=2;j++){
-      setTimeout(getPokemon,delay*500,center.lat+0.002*i,center.lng+0.002*j);
-      setTimeout(throttledLoadCache,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
-      setTimeout(setPos,delay++*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+  setTimeout(function(){
+    center = map.getCenter();
+    var delay = 0;
+    for(var i=-2;i<=2;i++){
+      for(var j=-2;j<=2;j++){
+        setTimeout(getPokemon,delay*500,center.lat+0.002*i,center.lng+0.002*j);
+        setTimeout(throttledLoadCache,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+        setTimeout(setPos,delay++*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+      }
     }
-  }
+  },1000);
 },15000);
 
 function setPos(x){
@@ -98,8 +100,8 @@ function imageToDataUri(img) {
 
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
-}
+  }
 
-function setDistance(name, distance){
-  distDict[name] = distance;
-}
+  function setDistance(name, distance){
+    distDict[name] = distance;
+  }
