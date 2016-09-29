@@ -23,11 +23,13 @@ var sentData = [];
 var pokemonList = [];
 var markerList = [];
 var markerDict = [];
-for(var i=1;i<=151;i++){
-	markerDict[i] = true;
-}
 function resetDict(){
 	markerDict = [];
+}
+function allDict(){
+	for(var i=1;i<=151;i++){
+		markerDict[i] = true;
+	}
 }
 function addDict(x){
 	markerDict[x] = true;
@@ -50,6 +52,9 @@ function cacheOutput(){
 			pokemonList[pokeid][hashpos] = {lat:(old.lat*old.count+pokelat)/(old.count+1),lng:(old.lng*old.count+pokelng)/(old.count+1),count:old.count+1};
 		}
 	}
+	for(var i in shownMarker){
+		shownMarker[i].marker.remove();
+	}
 	redrawMarker();
 }
 
@@ -68,14 +73,14 @@ function redrawMarker(){
 		}
 		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count > max * 0.3 && markerDict[num]){
+			if(count >= max * 0.2 && markerDict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 				var elementTime=$(pokeMarker._icon).find(".remainingtext");
 				elementTime.html(count+"");
-				var amount = parseInt(count*9/(max+5));
-				elementTime.css('background-color','#D'+(9-amount)+'0');
+				var amount = parseInt(count*12/(max+5));
+				elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
 				markerList.push(pokeMarker);
 			}
 		}
