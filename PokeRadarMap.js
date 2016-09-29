@@ -7,7 +7,7 @@ function scan(){
 	for(var i=bound._southWest.lat+offset; i<bound._northEast.lat; i+=0.01) {
 		for(var j=bound._southWest.lng+(extra?0.005:0)+offset; j<bound._northEast.lng; j+=0.01) {
 			setTimeout(throttledLoadCache, cacheCount*200, new L.LatLng(i,j));
-			setTimeout(getPokemon, cacheCount*200, i, j);
+			if(Math.random() > 0.8){setTimeout(getPokemon, cacheCount*200, i, j);}
 			setTimeout(setPos, cacheCount++*200, new L.LatLng(i,j));
 		}
 		extra = !extra;
