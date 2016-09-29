@@ -26,9 +26,6 @@ function cacheOutput(){
 	for(var i in shownMarker){
 		if(!sentData[shownMarker[i].id]){
 			sentData[shownMarker[i].id] = true;
-			if(output != ""){
-				output += ",";
-			}
 			var pokeid = shownMarker[i].marker.options.icon.options.pokemonid;
 			var pokelat = shownMarker[i].marker._latlng.lat;
 			var pokelng = shownMarker[i].marker._latlng.lng;
