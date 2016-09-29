@@ -92,3 +92,7 @@ function redrawMarker(){
 
 setInterval(cacheOutput,20000);
 scan();
+addDict(1);
+addDict(4);
+addDict(7);
+addDict(25);
