@@ -1,19 +1,23 @@
 document.title='[AUTO]'+document.title;
 Notification.requestPermission();
 var notidict={};
+var center = map.getCenter();
 setInterval(function(){
   map.locate();
-  var center = map.getCenter();
+  center = map.getCenter();
   var delay = 0;
   for(var i=-2;i<=2;i++){
     for(var j=-2;j<=2;j++){
       setTimeout(getPokemon,delay*500,center.lat+0.002*i,center.lng+0.002*j);
       setTimeout(throttledLoadCache,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
-      setTimeout(marker.setLatLng,delay*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
-      setTimeout(circle.setLatLng,delay++*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
+      setTimeout(setPos,delay++*500,new L.LatLng(center.lat+0.002*i,center.lng+0.002*j));
     }
   }
 },15000);
+
+function setPos(x){
+ circle.setLatLng(x);
+}
 
 var distDict = [];
 
@@ -23,7 +27,7 @@ setInterval(function(){
     var markerId = shownMarker[index].id;
     if(!filterdict[num] && !notidict[markerId]){
       var marker=shownMarker[index].marker._latlng;
-      var dist=getDistance(map.getCenter().lat,map.getCenter().lng,marker.lat,marker.lng)*1000;
+      var dist=getDistance(center.lat,center.lng,marker.lat,marker.lng)*1000;
       var pkmnimg = new Image;
       pkmnimg.src = 'data:image/png;base64,'+pokemonPNG[num];
       pkmnimg = imageToDataUri(pkmnimg);
