@@ -90,5 +90,5 @@ function redrawMarker(){
 	}
 }
 
-setInterval(cacheOutput,60000);
+setInterval(cacheOutput,20000);
 scan();
