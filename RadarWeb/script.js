@@ -376,30 +376,48 @@ function redrawMarker(){
 	}
 	markerList = [];
 	for(var num in pokemonList){
-		var max = 0;
-		for(var hash in pokemonList[num]){
-			var count = pokemonList[num][hash].count;
-			if(count > max){
-				max = count;
+		if(num != 0){
+			var max = 0;
+			for(var hash in pokemonList[num]){
+				var count = pokemonList[num][hash].count;
+				if(count > max){
+					max = count;
+				}
+			}
+			for(var hash in pokemonList[num]){
+				var count = pokemonList[num][hash].count;
+				if(count >= max * 0.3 && !filterdict[num]){
+					var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
+					map.addLayer(pokeMarker);
+					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
+					var elementTime=$(pokeMarker._icon).find(".remainingtext");
+					elementTime.html(count+"");
+					var amount = parseInt(count*12/(max+5));
+					elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
+					markerList.push(pokeMarker);
+				}
 			}
 		}
-		for(var hash in pokemonList[num]){
-			var count = pokemonList[num][hash].count;
-			if(count >= max * 0.3 && !filterdict[num]){
-				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
-				map.addLayer(pokeMarker);
-				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
-				var elementTime=$(pokeMarker._icon).find(".remainingtext");
-				elementTime.html(count+"");
-				var amount = parseInt(count*12/(max+5));
-				elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
-				markerList.push(pokeMarker);
-			}
+	}
+}
+
+function redrawFog(){
+	for(var hash in pokemonList[0]){
+		var lat = parseFloat(hash.split(",")[0])/100;
+		var lng = parseFloat(hash.split(",")[1])/100;
+		var rect = new L.rectangle(L.latLngBounds(L.latLng(lat, lng), L.latLng(lat+0.01, lng+0.01)));
+		rect.setStyle({color:'red',weight:0,fillOpacity:0.03});
+		if(pokemonList[0][hash].time > 18000){
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
+		}else if(pokemonList[0][hash].time > 36000){
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.1});
 		}
+		map.addLayer(rect);
 	}
 }
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
+	redrawFog();
 });
