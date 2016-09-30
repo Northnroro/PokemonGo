@@ -128,6 +128,9 @@ function redrawMarker(){
 				var elementTime=$(pokeMarker._icon).find(".remainingtext");
 				elementTime.html(count+"");
 				var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.003));
+				if(amount <= 5){
+					amount = parseInt(amount*2/3);
+				}
 				elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
 				markerList.push(pokeMarker);
 			}
