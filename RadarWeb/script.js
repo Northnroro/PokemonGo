@@ -165,6 +165,7 @@ map.on("moveend",function(event){isBusy=false;
 });
 map.on("zoomend",function(event){isBusy=false;
 });
+/*
 map.on("click",function(event){var lat=event.latlng.lat;
 	var lng=event.latlng.lng;
 	var cp=new L.LatLng(lat,lng);
@@ -182,6 +183,7 @@ throttledLoadCache(cp);
 map.on("dblclick",function(event){var cp=new L.LatLng(event.latlng.lat,event.latlng.lng);
 	marker.setLatLng(cp);
 });
+*/
 map.locate({setView:true,maxZoom:17});
 map.on('locationfound',onLocationFound);
 };
@@ -257,7 +259,15 @@ var filtercookie=Cookies.get('filter');
 if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	filterdict={};
 	for(var i in filterlist){filterdict[filterlist[i]]=true;
-	}};
+	}}else{
+		for(var i in pokemonNames){
+			filterdict[i] = true;
+		}
+		filterdict[1]=false;
+		filterdict[4]=false;
+		filterdict[7]=false;
+		filterdict[25]=false;
+	}
 	$.get("https://gist.githubusercontent.com/anonymous/50c284e815df6c81aa53497a305a29f2/raw",function(data){var pokemons=data.split("\n");
 		var i;
 		for(i in pokemons){var pokemondata=pokemons[i].split(":");
@@ -343,6 +353,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	}});
 		$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
+		redrawMarker();
 	});
 	$('.close').on('click',function(){$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
@@ -391,5 +402,5 @@ function redrawMarker(){;
 ;
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
-	setInterval(redrawMarker,30000);
+	redrawMarker();
 });
