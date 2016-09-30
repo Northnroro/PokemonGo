@@ -398,7 +398,11 @@ function redrawMarker(){
 					map.addLayer(pokeMarker);
 					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 					var elementTime=$(pokeMarker._icon).find(".remainingtext");
-					elementTime.html(parseInt(count*24*60*60/(pokemonList[0][hash].time+1))+"");
+					if(count > 1){
+						elementTime.html(parseInt(count*24*60*60/(pokemonList[0][hash].time+1))+"");
+					}else{
+						elementTime.html(parseInt(count)+"");
+					}
 					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.003));
 					if(amount <= 6){
 						amount = parseInt(amount*4/5);
@@ -417,7 +421,7 @@ function redrawFog(){
 		var lng = parseFloat(hash.split(",")[1])/100;
 		var rect = new L.rectangle(L.latLngBounds(L.latLng(lat, lng), L.latLng(lat+0.01, lng+0.01)));
 		if(pokemonList[0][hash].time < 18000){
-		rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
 		}else if(pokemonList[0][hash].time < 36000){
 			rect.setStyle({color:'red',weight:0,fillOpacity:0.10});
 		}else if(pokemonList[0][hash].time < 54000){
