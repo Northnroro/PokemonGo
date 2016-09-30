@@ -264,10 +264,10 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		for(var i in pokemonNames){
 			filterdict[i] = true;
 		}
-		filterdict[1]=false;
-		filterdict[4]=false;
-		filterdict[7]=false;
-		filterdict[25]=false;
+		filterdict["1"]=false;
+		filterdict["4"]=false;
+		filterdict["7"]=false;
+		filterdict["25"]=false;
 	}
 	$.get("https://gist.githubusercontent.com/anonymous/50c284e815df6c81aa53497a305a29f2/raw",function(data){var pokemons=data.split("\n");
 		var i;
@@ -352,10 +352,19 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	});
 	$('.close').on('click',function(){$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
+		$('.filter').fadeOut("slow");
+		$('.filter').fadeIn("slow");
+		$('.filter').fadeOut("slow");
+		$('.filter').fadeIn("slow");
 	});
 	$('form.search').on('submit',function(e){e.preventDefault();});
 	$("body").css({height:$(window).height()});
 })
+
+$('.filter').fadeOut("slow");
+$('.filter').fadeIn("slow");
+$('.filter').fadeOut("slow");
+$('.filter').fadeIn("slow");
 
 /*;
 ##################################################################################################;
