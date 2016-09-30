@@ -361,10 +361,6 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	$("body").css({height:$(window).height()});
 })
 
-$('.filter').fadeOut("slow");
-$('.filter').fadeIn("slow");
-$('.filter').fadeOut("slow");
-$('.filter').fadeIn("slow");
 
 /*;
 ##################################################################################################;
