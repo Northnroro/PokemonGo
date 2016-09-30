@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>FastPokeMap - Gotta Track'em All</title>
+    <title>Pokemon Go Map Thailand</title>
     <meta name="description" content="FastPokeMap is a Pokemon GO map and scanner. It's a much faster PokeVision alternative." />
     <meta name="keywords" content="fastpokemap,map,pokemon,tracker,pokevision,alternative,scanner,poketrack,pokemon go,pokémon go,pokémon,go,timers,free,niantic,alternative,alternative pokevision">
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui" />
@@ -43,63 +43,40 @@
     
   </head>
   <body ontouchstart="">
-    <h1>FastPokeMap</h1>
-    <h2>Gotta Track'em All</h2>
+    <h1>Pokemon Go Map Thailand</h1>
     <div class="window infowindow">
-        <p><strong>NEW Update:</strong> We've increased our scan range by over 2x! This means you can scan much more! <br /><br />Follow our <a href="https://twitter.com/FastPokeMapCom" target="_blank">Twitter</a> for updates!</p>
-        <p>FastPokeMap is a live GO map, helping you find monsters around you.</p>
-        <hr />
-        <!--<p>Feedback is  welcome on <a href="https://twitter.com/FastPokeMapCom" target="_blank">Twitter</a></p>-->
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick">
-                <input type="hidden" name="hosted_button_id" value="9AHZCAZGA76UN">
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-        </form>        
-        <p>Thank you and happy hunting!</p>
+        <strong>ยินดีต้อนรับสู่แผนที่รังของเพจ Pokemon Go Map Thailand</strong><br />
+        ไปเยี่ยมชมเพจของเราได้ที่ <a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/" target="_blank">Facebook</a>!</p>
+        <p><strong>ประกาศ:</strong> ท่านสามารถเลือกดูรังของตัวอื่นโดยคลิกปุ่มที่มุมขวาล่างของจอ <br />
+        <p>เราใช้ข้อมูลจากโปเกเรดาร์เพื่อหารังโปเกมอนอย่างแม่นยำสำหรับทุกคน</p>
+        <hr />  
+        <p>ขอบคุณที่เยี่ยมชมและขอให้สนุกกับการจับโปเกมอน!</p>
         <button class="close">
          X
         </button>
     </div>
     <div class="desktop-header">
-        <div class="fpm-top-title">FastPokeMap</div>        
-        <div class="fpm-top-nav"><span class="top-nav-item"><a href="https://fastpokemap.se/faq.html">FAQ</a></span><span class="top-nav-item"><a href="https://fastpokemap.se/privacy-policy.html">Privacy Policy</a><span></div>
+        <div class="fpm-top-title">Pokemon Go Map Thailand</div>        
+        <div class="fpm-top-nav"><span class="top-nav-item"><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Facebook: Pokemon Go Map Thailand</a></span></div>
+        <!--
         <div class="fpm-top-ad"><script> if(!$_mobile) document.write("<center><script type='text/javascript' src='//ap.lijit.com/www/delivery/fpi.js?z=390696&u=fastpokemap&width=728&height=90'><\/script></center>");</script></div>
+        -->
     </div>
     <div class="mobile-header">
         <ul id="menu">
-            <li><a href="https://fastpokemap.se/faq.html">FAQ</a></li>
-            <li><a href="https://fastpokemap.se/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Facebook</a></li>
         </ul>
     </div>
-    <div id="map">    
-        <div class="nearby" title="Pokemon nearby your scan area">
-            <h3>NEARBY</h3>
-        </div>
-        
+    <div id="map">
         <div class="left">
-           <!-- <button class="notifications">
-                <img src="https://fastpokemap.se/img/notifications.png" title="Enable notifications">
-          </button> -->
-          <button class="info">
-            <img src="https://fastpokemap.se/img/favicon-32x32.png" title="FastPokeMap - Gotta Track'em All">
-          </button>
-        </div>
-        
-        <div class="center">
-          <button class="scan">
-            <img src="https://fastpokemap.se/img/scan.png" title="Launch scan!">
-          </button>
-        </div>
-        
         <div class="right">
              <button class="filter" id="openfilter">
                 <img src="https://fastpokemap.se/img/filter.png" title="Filter Pokemon">
             </button>
-            <button class="search">
+            <button class="search hidden">
                 <img src="https://fastpokemap.se/img/search.png" title="Find location">
             </button>
-            <button class="location">
+            <button class="location hidden">
                 <img src="https://fastpokemap.se/img/location.png" title="Enable location tracking">
             </button>
         </div>
@@ -128,7 +105,7 @@
          ✓
         </button>
     </div>
-    
+    <!--
     <div class="adroom">
       <div class="pcad">
       <script type="text/javascript">
@@ -141,21 +118,10 @@
       </script>
       </div>
     </div>
-    
+    -->
     <noscript>
       Javascript is required to view this website!<br />
       <a href="http://www.enable-javascript.com/" target="_blank">Here are the instructions how to enable JavaScript in your web browser.</a>
     </noscript>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-82124261-1', 'auto', {'sampleRate': 10});
-      //ga('create', 'UA-82124261-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    
   </body>
 </html>
