@@ -60,12 +60,17 @@ function nextDict(){
 	}
 }
 function cacheOutput(){
+	var bound = map.getBounds();
 	for(var i in shownMarker){
 		if(!sentData[shownMarker[i].id]){
 			sentData[shownMarker[i].id] = true;
 			var pokeid = shownMarker[i].marker.options.icon.options.pokemonid;
 			var pokelat = shownMarker[i].marker._latlng.lat;
 			var pokelng = shownMarker[i].marker._latlng.lng;
+			if(parseInt(pokelat*100) < parseInt(bound._southWest.lat*100) || parseInt(pokelat*100) >= parseInt(bound._northEast.lat*100) || 
+				parseInt(pokelng*100) < parseInt(bound._southWest.lng*100) || parseInt(pokelng*100) >= parseInt(bound._northEast.lng*100)){
+				continue;
+			}
 			var hashpos = parseInt(pokelat*100)+","+parseInt(pokelng*100);
 			if(!pokemonList[pokeid]){
 				pokemonList[pokeid] = {};
@@ -80,7 +85,6 @@ function cacheOutput(){
 	if(!pokemonList[0]){
 		pokemonList[0] = {};
 	}
-	var bound = map.getBounds();
 	for(var i=bound._southWest.lat; i<bound._northEast.lat; i+=0.01) {
 		for(var j=bound._southWest.lng; j<bound._northEast.lng; j+=0.01) {
 			var hashpos = parseInt(i*100)+","+parseInt(j*100);
@@ -104,20 +108,26 @@ function redrawMarker(){
 	for(var num in pokemonList){
 		var max = 0;
 		for(var hash in pokemonList[num]){
-			var count = pokemonList[num][hash].count;
+			if(!pokemonList[0][hash]){
+				pokemonList[0][hash] = {time:0};
+			}
+			var count = pokemonList[num][hash].count/(pokemonList[0][hash].time+1);
 			if(count > max){
 				max = count;
 			}
 		}
 		for(var hash in pokemonList[num]){
+			if(!pokemonList[0][hash]){
+				pokemonList[0][hash] = {time:0};
+			}
 			var count = pokemonList[num][hash].count;
-			if(count >= max * 0.3 && markerDict[num]){
+			if(count/(pokemonList[0][hash].time+1) >= max * 0.3 && markerDict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 				var elementTime=$(pokeMarker._icon).find(".remainingtext");
 				elementTime.html(count+"");
-				var amount = parseInt(count*12/(max+5));
+				var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.001));
 				elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
 				markerList.push(pokeMarker);
 			}
