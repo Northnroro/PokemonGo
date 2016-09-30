@@ -349,7 +349,6 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
 		redrawMarker();
-		map.locate();
 	});
 	$('.close').on('click',function(){$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
@@ -357,6 +356,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		$('.filter').fadeIn("slow");
 		$('.filter').fadeOut("slow");
 		$('.filter').fadeIn("slow");
+		map.locate();
 	});
 	$('form.search').on('submit',function(e){e.preventDefault();});
 	$("body").css({height:$(window).height()});
@@ -398,7 +398,7 @@ function redrawMarker(){
 					map.addLayer(pokeMarker);
 					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 					var elementTime=$(pokeMarker._icon).find(".remainingtext");
-					elementTime.html(parseInt(count/(pokemonList[0][hash].time+1)*24*60*60)+"/วัน");
+					elementTime.html(parseInt(count/(pokemonList[0][hash].time+1)*24*60*60)+"/day");
 					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.003));
 					if(amount <= 6){
 						amount = parseInt(amount*4/5);
