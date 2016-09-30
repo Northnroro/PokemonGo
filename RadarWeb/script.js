@@ -380,20 +380,29 @@ function redrawMarker(){
 		if(num != 0){
 			var max = 0;
 			for(var hash in pokemonList[num]){
-				var count = pokemonList[num][hash].count;
+				if(!pokemonList[0][hash]){
+					pokemonList[0][hash] = {time:0};
+				}
+				var count = pokemonList[num][hash].count/(pokemonList[0][hash].time+1);
 				if(count > max){
 					max = count;
 				}
 			}
 			for(var hash in pokemonList[num]){
+				if(!pokemonList[0][hash]){
+					pokemonList[0][hash] = {time:0};
+				}
 				var count = pokemonList[num][hash].count;
-				if(count >= max * 0.3 && !filterdict[num]){
+				if(count/(pokemonList[0][hash].time+1) >= max * 0.2 && !filterdict[num]){
 					var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 					map.addLayer(pokeMarker);
 					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 					var elementTime=$(pokeMarker._icon).find(".remainingtext");
-					elementTime.html(count+"");
-					var amount = parseInt(count*12/(max+5));
+					elementTime.html(parseInt(count/(pokemonList[0][hash].time+1)*24*60*60)+"/วัน");
+					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.003));
+					if(amount <= 6){
+						amount = parseInt(amount*4/5);
+					}
 					elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
 					markerList.push(pokeMarker);
 				}
