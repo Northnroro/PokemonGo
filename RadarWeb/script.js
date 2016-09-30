@@ -398,7 +398,7 @@ function redrawMarker(){
 					map.addLayer(pokeMarker);
 					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
 					var elementTime=$(pokeMarker._icon).find(".remainingtext");
-					elementTime.html(parseInt(count/(pokemonList[0][hash].time+1)*24*60*60)+"/day");
+					elementTime.html(parseInt(count*24*60*60/(pokemonList[0][hash].time+1))+"");
 					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.003));
 					if(amount <= 6){
 						amount = parseInt(amount*4/5);
@@ -432,5 +432,5 @@ function redrawFog(){
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
-	redrawFog();
+	//redrawFog();
 });
