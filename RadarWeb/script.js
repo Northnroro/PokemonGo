@@ -260,6 +260,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	filterdict={};
 	for(var i in filterlist){filterdict[filterlist[i]]=true;
 	}}else{
+		filterdict={};
 		for(var i in pokemonNames){
 			filterdict[i] = true;
 		}
