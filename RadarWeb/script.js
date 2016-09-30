@@ -302,7 +302,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	circle.setLatLng(cp);
 	getPokemon(cp.lat,cp.lng);
 }}});
-	$(document.body).on('click','.pokemon',function();
+	$(document.body).on('click','.pokemon',function()
 		{var zone=$(this).data("zone");
 		if(zone!=undefined){DrawS2(zone);
 		}});
