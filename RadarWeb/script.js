@@ -149,9 +149,9 @@ setInterval(updateTime,1000)
 setInterval(autoTrack,5000)
 var osmUrl='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
 var osm=new L.TileLayer(osmUrl,{minZoom:2,maxZoom:18,noWrap:true,})
-map.addLayer(marker)
+//map.addLayer(marker)
 map.addLayer(osm)
-map.addLayer(circle)
+//map.addLayer(circle)
 var credits=L.control.attribution().addTo(map)
 credits.addAttribution('Powered by Esri, HERE, DeLorme, NGA, USGS')
 map.on("movestart",function(event){isBusy=true
@@ -357,36 +357,9 @@ getPokemon(cp.lat,cp.lng)
 ##################################################################################################
 */
 
-
-var sentData = [];
 var pokemonList = [];
 var markerList = [];
-var markerDict = [];
 var currentPokemon = 0;
-
-function cacheOutput(){
-	for(var i in shownMarker){
-		if(!sentData[shownMarker[i].id]){
-			sentData[shownMarker[i].id] = true;
-			var pokeid = shownMarker[i].marker.options.icon.options.pokemonid;
-			var pokelat = shownMarker[i].marker._latlng.lat;
-			var pokelng = shownMarker[i].marker._latlng.lng;
-			var hashpos = parseInt(pokelat*100)+","+parseInt(pokelng*100);
-			if(!pokemonList[pokeid]){
-				pokemonList[pokeid] = {};
-			}
-			if(!pokemonList[pokeid][hashpos]){
-				pokemonList[pokeid][hashpos] = {lat:0, lng:0, count:0};
-			}
-			var old = pokemonList[pokeid][hashpos];
-			pokemonList[pokeid][hashpos] = {lat:parseInt((old.lat*old.count+pokelat)/(old.count+1)*10000)/10000,lng:parseInt((old.lng*old.count+pokelng)/(old.count+1)*10000)/10000,count:old.count+1};
-		}
-	}
-	for(var i in shownMarker){
-		shownMarker[i].marker.remove();
-	}
-	shownMarker = [];
-}
 
 function redrawMarker(){
 	for(var index in markerList){
@@ -419,6 +392,5 @@ function redrawMarker(){
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){
 	pokemonList = data;
-	setInterval(cacheOutput,1000);
 	setInterval(redrawMarker,30000);
 });
