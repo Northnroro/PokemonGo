@@ -349,6 +349,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
 		redrawMarker();
+		map.locate();
 	});
 	$('.close').on('click',function(){$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
@@ -406,11 +407,14 @@ function redrawFog(){
 		var lat = parseFloat(hash.split(",")[0])/100;
 		var lng = parseFloat(hash.split(",")[1])/100;
 		var rect = new L.rectangle(L.latLngBounds(L.latLng(lat, lng), L.latLng(lat+0.01, lng+0.01)));
+		if(pokemonList[0][hash].time < 18000){
 		rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
-		if(pokemonList[0][hash].time > 18000){
-			rect.setStyle({color:'red',weight:0,fillOpacity:0.1});
-		}else if(pokemonList[0][hash].time > 36000){
-			rect.setStyle({color:'red',weight:0,fillOpacity:0.2});
+		}else if(pokemonList[0][hash].time < 36000){
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.10});
+		}else if(pokemonList[0][hash].time < 54000){
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.15});
+		}else{
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.20});
 		}
 		map.addLayer(rect);
 	}
