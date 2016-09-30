@@ -403,7 +403,7 @@ function redrawMarker(){
 					}else{
 						elementTime.html(parseInt(count)+"");
 					}
-					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.001));
+					var amount = parseInt(count/(pokemonList[0][hash].time+1)*12/(max+0.0001));
 					if(amount <= 6){
 						amount = parseInt(amount*4/5);
 					}
