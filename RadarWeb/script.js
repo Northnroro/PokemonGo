@@ -406,11 +406,11 @@ function redrawFog(){
 		var lat = parseFloat(hash.split(",")[0])/100;
 		var lng = parseFloat(hash.split(",")[1])/100;
 		var rect = new L.rectangle(L.latLngBounds(L.latLng(lat, lng), L.latLng(lat+0.01, lng+0.01)));
-		rect.setStyle({color:'red',weight:0,fillOpacity:0.03});
+		rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
 		if(pokemonList[0][hash].time > 18000){
-			rect.setStyle({color:'red',weight:0,fillOpacity:0.05});
-		}else if(pokemonList[0][hash].time > 36000){
 			rect.setStyle({color:'red',weight:0,fillOpacity:0.1});
+		}else if(pokemonList[0][hash].time > 36000){
+			rect.setStyle({color:'red',weight:0,fillOpacity:0.2});
 		}
 		map.addLayer(rect);
 	}
