@@ -319,8 +319,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	$('.notifications').on('click',function(){if(!$('.notifications').hasClass('active')){$('.notifications').addClass('active');
 		setTimeout(function(){alert('Notification!');
 	},500);
-	};
-	else{$('.notifications').removeClass('active');
+	}else{$('.notifications').removeClass('active');
 }});
 	$('.info').on('click',function(){$('.infowindow').addClass('show');
 		$('.left, .center, .right, .leaflet-control-zoom').addClass('hidden');
@@ -359,35 +358,34 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	$('.close').on('click',function(){$('.window').removeClass('show');
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
 	});
-	$('form.search').on('submit',function(e){e.preventDefault();
-	});
+	$('form.search').on('submit',function(e){e.preventDefault();});
 	$("body").css({height:$(window).height()});
-});
-;
+})
+
 /*;
 ##################################################################################################;
-*/;
-;
+*/
+
 var pokemonList = [];
 var markerList = [];
 var currentPokemon = 0;
-;
-function redrawMarker(){;
-	for(var index in markerList){;
+
+function redrawMarker(){
+	for(var index in markerList){
 		markerList[index].remove();
-	};
+	}
 	markerList = [];
-	for(var num in pokemonList){;
+	for(var num in pokemonList){
 		var max = 0;
-		for(var hash in pokemonList[num]){;
+		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count > max){;
+			if(count > max){
 				max = count;
-			};
-		};
-		for(var hash in pokemonList[num]){;
+			}
+		}
+		for(var hash in pokemonList[num]){
 			var count = pokemonList[num][hash].count;
-			if(count >= max * 0.3 && !filterdict[num]){;
+			if(count >= max * 0.3 && !filterdict[num]){
 				var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 				map.addLayer(pokeMarker);
 				pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
@@ -396,11 +394,11 @@ function redrawMarker(){;
 				var amount = parseInt(count*12/(max+5));
 				elementTime.css('background-color','#E'+(12-amount).toString(16)+'0');
 				markerList.push(pokeMarker);
-			};
-		};
-	};
-};
-;
+			}
+		}
+	}
+}
+
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
