@@ -145,7 +145,7 @@ getPokemon(cp.lat,cp.lng);
 }};
 function initmap(){map=new L.Map('map',{attributionControl:false});
 setInterval(updateTime,1000);
-setInterval(autoTrack,5000);
+//setInterval(autoTrack,5000);
 var osmUrl='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
 var osm=new L.TileLayer(osmUrl,{minZoom:2,maxZoom:18,noWrap:true,});
 //map.addLayer(marker);
@@ -184,7 +184,7 @@ map.on("dblclick",function(event){var cp=new L.LatLng(event.latlng.lat,event.lat
 	marker.setLatLng(cp);
 });
 */
-map.locate({setView:true,maxZoom:17});
+map.locate({setView:true,maxZoom:14});
 map.on('locationfound',onLocationFound);
 };
 function autoTrack(){if(trackingEnabled);
@@ -306,14 +306,14 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		{var zone=$(this).data("zone");
 		if(zone!=undefined){DrawS2(zone);
 		}});
-	$('.location').on('click',function(){if(!trackingEnabled){if(!$('.location').hasClass('active')){$('.location').addClass('active');
+	/*$('.location').on('click',function(){if(!trackingEnabled){if(!$('.location').hasClass('active')){$('.location').addClass('active');
 		trackingEnabled=true;
 		console.log("Tracking enabled");
 		map.locate({setView:true,maxZoom:16});
 	}}else{trackingEnabled=false;
 		$('.location').removeClass('active');
 		console.log("Tracking disabled");
-	}});
+	}});*/
 	$('.infowindow').addClass('show');
 	$('.nearby, .left, .center, .right, .leaflet-control-zoom').addClass('hidden');
 	$('.info').on('click',function(){$('.infowindow').addClass('show');
