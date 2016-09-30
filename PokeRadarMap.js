@@ -77,6 +77,19 @@ function cacheOutput(){
 			pokemonList[pokeid][hashpos] = {lat:parseInt((old.lat*old.count+pokelat)/(old.count+1)*10000)/10000,lng:parseInt((old.lng*old.count+pokelng)/(old.count+1)*10000)/10000,count:old.count+1};
 		}
 	}
+	if(!pokemonList[0]){
+		pokemonList[0] = {};
+	}
+	var bound = map.getBounds();
+	for(var i=bound._southWest.lat; i<bound._northEast.lat; i+=0.01) {
+		for(var j=bound._southWest.lng; j<bound._northEast.lng; j+=0.01) {
+			var hashpos = parseInt(i*100)+","+parseInt(j*100);
+			if(!pokemonList[0][hashpos]){
+				pokemonList[0][hashpos] = {time:0};
+			}
+			pokemonList[0][hashpos].time = pokemonList[0][hashpos].time+10;
+		}
+	}
 	for(var i in shownMarker){
 		shownMarker[i].marker.remove();
 	}
@@ -124,7 +137,7 @@ function getOutput(){
 }
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){
 	pokemonList = data;
-	setInterval(cacheOutput,1000);
+	setInterval(cacheOutput,10000);
 	setInterval(redrawMarker,30000);
 	scan();
 	resetDict();
