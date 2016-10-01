@@ -474,5 +474,5 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 });
 
 setTimeout(function(){
-	$('#loading').text("กำลังโหลด...\nหากโหลดนานเกินไปกรุณารีเฟช");
+	$('#loading').text("หากโหลดนานเกินไปกรุณารีเฟช");
 },5000);
