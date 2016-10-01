@@ -367,7 +367,6 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 ##################################################################################################;
 */
 
-$('#sampleicon')[0].src = "data:image/png;base64,"+pokemonPNG[151];
 
 var pokemonList = [];
 var markerList = [];
@@ -442,8 +441,21 @@ function redrawFog(){
 	}
 }
 
+function animateSampleIcon(){
+	var delay = 0;
+	for(var i=1;i<=151;i++){
+		setTimeout(setSampleIcon,delay++*300,i);
+	}
+}
+
+function setSampleIcon(x){
+	$('#sampleicon')[0].src = "data:image/png;base64,"+pokemonPNG[x];
+	$('#samplefreq')[0].css('background-color',rgb(238, parseInt(Math.random()*200)+38, 0));
+}
+
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
 	//redrawFog();
+	animateSampleIcon();
 });
