@@ -15,7 +15,7 @@ var isLoading=false;
 var isBusy=false;
 L.HtmlIcon=L.Icon.extend({options:{},initialize:function(options){L.Util.setOptions(this,options);
 },createIcon:function(){var div=document.createElement('div');
-if(this.options.hide){div.innerHTML='<div class="displaypokemon hidden" data-pokeid="'+ this.options.pokemonid+'">'+'<div class="pokeimg">'+'<img src="data:image/png;base64,'+ pokemonPNG[this.options.pokemonid]+'" />'+'</div>'+'<div class="remainingtext" data-expire="'+ this.options.expire+'"></div>'+'</div>'}else{div.innerHTML='<div class="displaypokemon" data-pokeid="'+ this.options.pokemonid+'">'+'<div class="pokeimg">'+'<img src="data:image/png;base64,'+ pokemonPNG[this.options.pokemonid]+'" />'+'</div>'+'<div class="remainingtext" data-expire="'+ this.options.expire+'"></div>'+'</div>';
+if(this.options.hide){div.innerHTML='<div class="displaypokemon hidden" data-pokeid="'+ this.options.pokemonid+'">'+'<div class="pokeimg">'+'<img style="min-height:0px;" src="data:image/png;base64,'+ pokemonPNG[this.options.pokemonid]+'" />'+'</div>'+'<div class="remainingtext" data-expire="'+ this.options.expire+'"></div>'+'</div>'}else{div.innerHTML='<div class="displaypokemon" data-pokeid="'+ this.options.pokemonid+'">'+'<div class="pokeimg">'+'<img src="data:image/png;base64,'+ pokemonPNG[this.options.pokemonid]+'" />'+'</div>'+'<div class="remainingtext" data-expire="'+ this.options.expire+'"></div>'+'</div>';
 };
 return div;
 },createShadow:function(){return null;
