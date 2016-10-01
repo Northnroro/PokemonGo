@@ -367,6 +367,8 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 ##################################################################################################;
 */
 
+$('#sampleicon')[0].src = "data:image/png;base64,"+pokemonPNG[151];
+
 var pokemonList = [];
 var markerList = [];
 var currentPokemon = 0;
