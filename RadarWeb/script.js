@@ -470,4 +470,9 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	//redrawFog();
 	animateSampleIcon(1);
 	$('.close').fadeIn();
+	$('#loading').hide();
 });
+
+setTimeout(function(){
+	$('#loading').text("กำลังโหลด... หากโหลดนานเกินไปกรุณารีเฟช");
+},5000);
