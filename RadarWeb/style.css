@@ -20,7 +20,7 @@ body h1, body h2 {
     padding: 0;
 }
 .pokeimg {
-  max-height: 42px;
+  max-height: 50px;
 }
 .pokeimg> img {
     padding-top: 5px;
