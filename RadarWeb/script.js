@@ -443,13 +443,13 @@ function redrawFog(){
 }
 
 var isStopAnimateSampleIcon = false;
-var animateSampleIconDelay = 500;
+var animateSampleIconDelay = 300;
 function animateSampleIcon(x){
 	setSampleIcon(x);
 	if(!isStopAnimateSampleIcon){
 		setTimeout(animateSampleIcon,animateSampleIconDelay,x+1);
 		if(animateSampleIconDelay > 10 && x%2 == 0){
-			animateSampleIconDelay--;
+			animateSampleIconDelay-=2;
 		}
 	}
 }
