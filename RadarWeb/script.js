@@ -357,6 +357,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		$('.filter').fadeOut("slow");
 		$('.filter').fadeIn("slow");
 		map.locate();
+		stopAnimateSampleIcon();
 	});
 	$('form.search').on('submit',function(e){e.preventDefault();});
 	$("body").css({height:$(window).height()});
@@ -441,21 +442,30 @@ function redrawFog(){
 	}
 }
 
-function animateSampleIcon(){
-	var delay = 0;
-	for(var i=1;i<=151;i++){
-		setTimeout(setSampleIcon,delay++*300,i);
+var isStopAnimateSampleIcon = false;
+var animateSampleIconDelay = 500;
+function animateSampleIcon(x){
+	setSampleIcon(x);
+	if(!isStopAnimateSampleIcon){
+		setTimeout(animateSampleIcon,animateSampleIconDelay,x+1);
+		if(animateSampleIconDelay > 10 && x%2 == 0){
+			animateSampleIconDelay--;
+		}
 	}
+}
+
+function stopAnimateSampleIcon(){
+	isStopAnimateSampleIcon = true;
 }
 
 function setSampleIcon(x){
 	$('#sampleicon')[0].src = "data:image/png;base64,"+pokemonPNG[x];
-	$('#samplefreq')[0].css('background-color',rgb(238, parseInt(Math.random()*200)+38, 0));
+	$('#samplefreq')[0].css('background-color','rgb(238, '+(parseInt(Math.random()*200)+38)+', 0)');
 }
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
 	//redrawFog();
-	animateSampleIcon();
+	animateSampleIcon(1);
 });
