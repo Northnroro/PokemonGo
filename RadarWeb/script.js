@@ -445,10 +445,11 @@ function redrawFog(){
 var isStopAnimateSampleIcon = false;
 var animateSampleIconDelay = 300;
 function animateSampleIcon(x){
+	if(x > 151) x = 1;
 	setSampleIcon(x);
 	if(!isStopAnimateSampleIcon){
 		setTimeout(animateSampleIcon,animateSampleIconDelay,x+1);
-		if(animateSampleIconDelay > 10 && x%2 == 0){
+		if(animateSampleIconDelay > 1 && x%2 == 0){
 			animateSampleIconDelay-=2;
 		}
 	}
