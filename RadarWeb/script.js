@@ -460,7 +460,7 @@ function stopAnimateSampleIcon(){
 
 function setSampleIcon(x){
 	$('#sampleicon')[0].src = "data:image/png;base64,"+pokemonPNG[x];
-	$('#samplefreq')[0].css('background-color','rgb(238, '+(parseInt(Math.random()*200)+38)+', 0)');
+	$('#samplefreq').css('background-color','rgb(238, '+(parseInt(Math.random()*200)+38)+', 0)');
 }
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
