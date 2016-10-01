@@ -449,7 +449,7 @@ function animateSampleIcon(x){
 	setSampleIcon(x);
 	if(!isStopAnimateSampleIcon){
 		setTimeout(animateSampleIcon,animateSampleIconDelay,x+1);
-		if(animateSampleIconDelay > 1 && x%2 == 0){
+		if(animateSampleIconDelay > 25 && x%2 == 0){
 			animateSampleIconDelay-=2;
 		}
 	}

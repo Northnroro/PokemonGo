@@ -53,9 +53,14 @@
         <p>เราใช้ข้อมูลจากโปเกเรดาร์เพื่อหารังโปเกมอนอย่างแม่นยำสำหรับทุกคน</p>
         <hr />  
         <p>ขอบคุณที่เยี่ยมชม ขอให้สนุกกับการจับโปเกมอน!</p>
-        <button class="close">
+        <button class="close" style="display:none;">
          X
         </button>
+        <script>
+            setTimeout(function(){
+                $('.close').fadeIn();
+            },2000);
+        </script>
     </div>
     <div class="desktop-header">
         <div class="fpm-top-title">Pokemon Go Map Thailand</div>        
