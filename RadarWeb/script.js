@@ -242,8 +242,8 @@ if(window.navigator.userAgent.indexOf('iPhone')!=-1&&window.navigator.standalone
 };
 $(function(){$('.nearby').hide();
 	$('#menu').slicknav({label:''});
-	if(/iPad|iPhone|iPod/.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message">Get alerts when near Pokemon<br /> and Pokestops! Install <strong><a href="https://goo.gl/CzM9bc">GoChat</a></strong>!</div>');
-}else if(/(android)/i.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message">Get alerts when near Pokemon<br /> and Pokestops! Install <strong><a href="https://goo.gl/HhBwtt">GoChat</a></strong>!</div>');
+	if(/iPad|iPhone|iPod/.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand - รู้ลึก รู้จริง รู้ถึงพิกัด GPS</a></strong></div>');
+}else if(/(android)/i.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand - รู้ลึก รู้จริง รู้ถึงพิกัด GPS</a></strong></div>');
 };
 var reversedPokemonNames=_.invert(pokemonNames);
 var orderedPokemonNames={};
@@ -469,4 +469,5 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	redrawMarker();
 	//redrawFog();
 	animateSampleIcon(1);
+	$('.close').fadeIn();
 });
