@@ -26,7 +26,12 @@ body h1, body h2 {
     padding-top: 5px;
     margin: 0;
     max-width: 42px;
+    /*min-height: 42px;*/
     max-height: 42px;
+    -webkit-filter: drop-shadow(1px 1px 0 black)
+                    drop-shadow(-1px -1px 0 black);
+    filter: drop-shadow(1px 1px 0 black) 
+            drop-shadow(-1px -1px 0 black);
 }
 .remainingtext {
     border-radius: 25px;
