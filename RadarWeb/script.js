@@ -393,6 +393,14 @@ function redrawMarker(){
 				}
 			}
 			for(var hash in pokemonList[num]){
+				if(markerAdded){
+					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 &&
+						pokemonList[num][hash].lat > marker._latlng.lat+0.15 &&
+						pokemonList[num][hash].lng < marker._latlng.lng-0.15 &&
+						pokemonList[num][hash].lng < marker._latlng.lng+0.15){
+						continue;
+					}
+				}
 				if(!pokemonList[0][hash]){
 					pokemonList[0][hash] = {time:0};
 				}
@@ -464,6 +472,26 @@ function setSampleIcon(x){
 	$('#samplefreq').css('background-color','rgb(238, '+(parseInt(Math.random()*200)+38)+', 0)');
 }
 
+setTimeout(function(){
+	$('#loading').text("หากโหลดนานเกินไปกรุณารีเฟช");
+},5000);
+
+var markerAdded = false;
+var rect = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#090", weight: 2});
+map.on("click",function(event){
+	if(!markerAdded){
+		map.addLayer(marker);
+		map.addLayer(rect);
+	}
+	var lat=event.latlng.lat;
+	var lng=event.latlng.lng;
+	var cp=new L.LatLng(lat,lng);
+	marker.setLatLng(cp);
+	var bounds = [new L.LatLng(lat-0.15,lng-0.15), new L.LatLng(lat+0.15,lng+0.15)];
+	rect.setBounds(bounds);
+	redrawMarker();
+});
+
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	redrawMarker();
@@ -472,7 +500,3 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	$('.close').fadeIn();
 	$('#loading').hide();
 });
-
-setTimeout(function(){
-	$('#loading').text("หากโหลดนานเกินไปกรุณารีเฟช");
-},5000);
