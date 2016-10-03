@@ -384,6 +384,14 @@ function redrawMarker(){
 		if(num != 0){
 			var max = 0;
 			for(var hash in pokemonList[num]){
+				if(markerAdded){
+					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 ||
+						pokemonList[num][hash].lat > marker._latlng.lat+0.15 ||
+						pokemonList[num][hash].lng < marker._latlng.lng-0.15 ||
+						pokemonList[num][hash].lng < marker._latlng.lng+0.15){
+						continue;
+					}
+				}
 				if(!pokemonList[0][hash]){
 					pokemonList[0][hash] = {time:0};
 				}
@@ -394,9 +402,9 @@ function redrawMarker(){
 			}
 			for(var hash in pokemonList[num]){
 				if(markerAdded){
-					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 &&
-						pokemonList[num][hash].lat > marker._latlng.lat+0.15 &&
-						pokemonList[num][hash].lng < marker._latlng.lng-0.15 &&
+					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 ||
+						pokemonList[num][hash].lat > marker._latlng.lat+0.15 ||
+						pokemonList[num][hash].lng < marker._latlng.lng-0.15 ||
 						pokemonList[num][hash].lng < marker._latlng.lng+0.15){
 						continue;
 					}
