@@ -388,7 +388,7 @@ function redrawMarker(){
 					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 ||
 						pokemonList[num][hash].lat > marker._latlng.lat+0.15 ||
 						pokemonList[num][hash].lng < marker._latlng.lng-0.15 ||
-						pokemonList[num][hash].lng < marker._latlng.lng+0.15){
+						pokemonList[num][hash].lng > marker._latlng.lng+0.15){
 						continue;
 					}
 				}
@@ -405,7 +405,7 @@ function redrawMarker(){
 					if(pokemonList[num][hash].lat < marker._latlng.lat-0.15 ||
 						pokemonList[num][hash].lat > marker._latlng.lat+0.15 ||
 						pokemonList[num][hash].lng < marker._latlng.lng-0.15 ||
-						pokemonList[num][hash].lng < marker._latlng.lng+0.15){
+						pokemonList[num][hash].lng > marker._latlng.lng+0.15){
 						continue;
 					}
 				}
