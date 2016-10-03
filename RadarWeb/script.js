@@ -481,7 +481,7 @@ var rectU = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555
 var rectD = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
 var rectL = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
 var rectR = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
-var rectC = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#558", weight: 2, fillOpacity:0});
+var rectC = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#568", weight: 5, fillOpacity:0});
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
@@ -498,6 +498,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 			map.addLayer(rectD);
 			map.addLayer(rectL);
 			map.addLayer(rectR);
+			map.addLayer(rectC);
 		}
 		var lat=event.latlng.lat;
 		var lng=event.latlng.lng;
