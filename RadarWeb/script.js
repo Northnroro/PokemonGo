@@ -482,30 +482,6 @@ var rectD = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555
 var rectL = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
 var rectR = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
 var rectC = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#558", weight: 2, fillOpacity:0});
-map.on("click",function(event){
-	if(!markerAdded){
-		map.addLayer(marker);
-		map.addLayer(rectU);
-		map.addLayer(rectD);
-		map.addLayer(rectL);
-		map.addLayer(rectR);
-	}
-	var lat=event.latlng.lat;
-	var lng=event.latlng.lng;
-	var cp=new L.LatLng(lat,lng);
-	marker.setLatLng(cp);
-	var bounds = [new L.LatLng(lat+0.15,-180), new L.LatLng(90,180)];
-	rectU.setBounds(bounds);
-	bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(-90,180)];
-	rectD.setBounds(bounds);
-	bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(lat+0.15,lng+0.15)];
-	rectL.setBounds(bounds);
-	bounds = [new L.LatLng(lat-0.15,lng+0.15), new L.LatLng(lat+0.15,180)];
-	rectR.setBounds(bounds);
-	bounds = [new L.LatLng(lat-0.15,lng-0.15), new L.LatLng(lat+0.15,lng+0.15)];
-	rectC.setBounds(bounds);
-	redrawMarker();
-});
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
@@ -514,4 +490,28 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	animateSampleIcon(1);
 	$('.close').fadeIn();
 	$('#loading').hide();
+	map.on("click",function(event){
+		if(!markerAdded){
+			map.addLayer(marker);
+			map.addLayer(rectU);
+			map.addLayer(rectD);
+			map.addLayer(rectL);
+			map.addLayer(rectR);
+		}
+		var lat=event.latlng.lat;
+		var lng=event.latlng.lng;
+		var cp=new L.LatLng(lat,lng);
+		marker.setLatLng(cp);
+		var bounds = [new L.LatLng(lat+0.15,-180), new L.LatLng(90,180)];
+		rectU.setBounds(bounds);
+		bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(-90,180)];
+		rectD.setBounds(bounds);
+		bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(lat+0.15,lng+0.15)];
+		rectL.setBounds(bounds);
+		bounds = [new L.LatLng(lat-0.15,lng+0.15), new L.LatLng(lat+0.15,180)];
+		rectR.setBounds(bounds);
+		bounds = [new L.LatLng(lat-0.15,lng-0.15), new L.LatLng(lat+0.15,lng+0.15)];
+		rectC.setBounds(bounds);
+		redrawMarker();
+	});
 });
