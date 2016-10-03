@@ -492,6 +492,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	$('#loading').hide();
 	map.on("click",function(event){
 		if(!markerAdded){
+			markerAdded = true;
 			map.addLayer(marker);
 			map.addLayer(rectU);
 			map.addLayer(rectD);
@@ -506,7 +507,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 		rectU.setBounds(bounds);
 		bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(-90,180)];
 		rectD.setBounds(bounds);
-		bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(lat+0.15,lng+0.15)];
+		bounds = [new L.LatLng(lat-0.15,-180), new L.LatLng(lat+0.15,lng-0.15)];
 		rectL.setBounds(bounds);
 		bounds = [new L.LatLng(lat-0.15,lng+0.15), new L.LatLng(lat+0.15,180)];
 		rectR.setBounds(bounds);
