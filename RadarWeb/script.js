@@ -493,6 +493,8 @@ var rectC = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#568
 
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
+	map.setView(new L.LatLng(13.75,100.55),13);
+	map.locate();
 	redrawMarker();
 	//redrawFog();
 	animateSampleIcon(1);
