@@ -143,7 +143,7 @@ getPokemon(cp.lat,cp.lng);
 }else if(firstTime){circle.setLatLng(cp);
 	firstTime=false;
 }};
-function initmap(){map=new L.Map('map',{attributionControl:false});
+function initmap(){map=new L.Map('map',{attributionControl:false, center: [13.75,100.55], zoom: 8});
 setInterval(updateTime,1000);
 //setInterval(autoTrack,5000);
 var osmUrl='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
