@@ -491,7 +491,6 @@ var rectL = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555
 var rectR = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#555", weight: 0, fillOpacity:0.7});
 var rectC = new L.rectangle([new L.LatLng(0,0),new L.LatLng(1,1)], {color: "#568", weight: 5, fillOpacity:0});
 
-map.setView(new L.LatLng(13.75,100.55),8);
 jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){;
 	pokemonList = data;
 	map.setView(new L.LatLng(13.75,100.55),13,{duration:1});
