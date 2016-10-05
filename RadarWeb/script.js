@@ -352,6 +352,9 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 	});
 	$('.close').on('click',function(){
 		$('.window').fadeOut();
+		setTimeout(function(){
+			$('.window').removeClass("show");
+		},500);
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
 		$('.filter').fadeOut("slow");
 		$('.filter').fadeIn("slow");
