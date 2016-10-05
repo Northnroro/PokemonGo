@@ -351,10 +351,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 		redrawMarker();
 	});
 	$('.close').on('click',function(){
-		$('.window').fadeOut();
-		setTimeout(function(){
-			$('.window').removeClass("show");
-		},500);
+		$('.window').removeClass("show");
 		$('.nearby, .left, .center, .right, .leaflet-control-zoom').removeClass('hidden');
 		$('.filter').fadeOut("slow");
 		$('.filter').fadeIn("slow");
