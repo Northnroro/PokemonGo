@@ -417,7 +417,7 @@ function redrawMarker(){
 					pokemonList[0][hash] = {time:0};
 				}
 				var count = pokemonList[num][hash].count;
-				if((count/(pokemonList[0][hash].time+1) >= max * 0.3 || (rareList[num] && count/(pokemonList[0][hash].time+1) >= max * 0.1)) && !filterdict[num]){
+				if((count/(pokemonList[0][hash].time+1) >= max * 0.3 || (rareList[num] && count/(pokemonList[0][hash].time+1) >= max * 0.15)) && !filterdict[num]){
 					var pokeMarker=new L.marker(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng),{icon:createPokeIcon(num,Date.now(),false)});
 					map.addLayer(pokeMarker);
 					pokeMarker.setLatLng(new L.LatLng(pokemonList[num][hash].lat,pokemonList[num][hash].lng));
