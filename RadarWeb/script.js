@@ -544,3 +544,29 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	$('#loading').hide();
 	redrawMarker();
 });
+var currentPokemon = 0;
+function allDict(){
+	filterdict = [];
+	currentPokemon = 0;
+	redrawMarker();
+}
+function resetDict(){
+	for(var i=1;i<=151;i++){
+		filterdict[i] = true;
+	}
+	redrawMarker();
+}
+function addDict(x){
+	filterdict[x] = false;
+	redrawMarker();
+}
+function nextDict(){
+	if(currentPokemon == 0 || (!filterdict[currentPokemon] && pokemonNames[currentPokemon])){
+		if(!filterdict[currentPokemon]){
+			filterdict[currentPokemon] = true;
+		}
+		currentPokemon++;
+		filterdict[currentPokemon] = false;
+		redrawMarker();
+	}
+}
