@@ -242,8 +242,8 @@ if(window.navigator.userAgent.indexOf('iPhone')!=-1&&window.navigator.standalone
 };
 $(function(){$('.nearby').hide();
 	$('#menu').slicknav({label:''});
-	if(/iPad|iPhone|iPod/.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand - รู้ลึกถึงพิกัด GPS</a></strong></div>');
-}else if(/(android)/i.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand - รู้ลึกถึงพิกัด GPS</a></strong></div>');
+	if(/iPad|iPhone|iPod/.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand</a></strong> <div class="fb-share-button" data-href="https://www.facebook.com/PokemonGoMapThailandByNorthnroro/" data-layout="button_count"></div> </div>');
+}else if(/(android)/i.test(navigator.userAgent)){$('.slicknav_menu').prepend('<div class="message"><strong><a href="https://www.facebook.com/Pok%C3%A9mon-Go-Map-Thailand-609993585856384/">Pokemon Go Map Thailand</a></strong> <div class="fb-share-button" data-href="https://www.facebook.com/PokemonGoMapThailandByNorthnroro/" data-layout="button_count"></div> </div>');
 };
 var reversedPokemonNames=_.invert(pokemonNames);
 var orderedPokemonNames={};
