@@ -74,7 +74,14 @@
         </strong>
         <span id="announcetxt" style="color:#0A2;">รู้หรือไม่ เพจเราก็มีค่าใช้จ่ายนะ ช่วยกันสนับสนุนโดยการแชร์คนละนิด แชร์บนวอล ในกลุ่ม ในเพจ ในไลน์</span>
         <script>
-          $("#announcetxt").blink(100);
+            setInterval(function(){
+                $("#announcetxt").css("color","#0A2");
+            },200);
+            setTimeout(function(){
+                setInterval(function(){
+                    $("#announcetxt").css("color","#38A");
+                },200);
+            },100);
         </script>
         <br />
         <div style="background-color:#FFF;color:black;position:absolute;margin-top:62px;margin-left:52px;">หมุดเจาะจงสถานที่</div>
