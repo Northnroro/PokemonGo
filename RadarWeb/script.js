@@ -539,6 +539,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 				}
 			},200);
 		});
+		redrawMarker();
 	},1000);
 	$('.close').fadeIn();
 	$('#loading').hide();
