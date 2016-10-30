@@ -61,17 +61,18 @@ function nextDict(){
 }
 function cacheOutput(){
 	var bound = map.getBounds();
+	var precision = 400; // 100
 	for(var i in shownMarker){
 		if(!sentData[shownMarker[i].id]){
 			sentData[shownMarker[i].id] = true;
 			var pokeid = shownMarker[i].marker.options.icon.options.pokemonid;
 			var pokelat = shownMarker[i].marker._latlng.lat;
 			var pokelng = shownMarker[i].marker._latlng.lng;
-			if(parseInt(pokelat*100) < parseInt(bound._southWest.lat*100) || parseInt(pokelat*100) >= parseInt(bound._northEast.lat*100) || 
-				parseInt(pokelng*100) < parseInt(bound._southWest.lng*100) || parseInt(pokelng*100) >= parseInt(bound._northEast.lng*100)){
+			if(parseInt(pokelat*precision) < parseInt(bound._southWest.lat*precision) || parseInt(pokelat*precision) >= parseInt(bound._northEast.lat*precision) || 
+				parseInt(pokelng*precision) < parseInt(bound._southWest.lng*precision) || parseInt(pokelng*precision) >= parseInt(bound._northEast.lng*precision)){
 				continue;
 			}
-			var hashpos = parseInt(pokelat*100)+","+parseInt(pokelng*100);
+			var hashpos = parseInt(pokelat*precision)+","+parseInt(pokelng*precision); /* HASH FUNCTION hash function */
 			if(!pokemonList[pokeid]){
 				pokemonList[pokeid] = {};
 			}
@@ -85,9 +86,9 @@ function cacheOutput(){
 	if(!pokemonList[0]){
 		pokemonList[0] = {};
 	}
-	for(var i=bound._southWest.lat; i<bound._northEast.lat; i+=0.01) {
-		for(var j=bound._southWest.lng; j<bound._northEast.lng; j+=0.01) {
-			var hashpos = parseInt(i*100)+","+parseInt(j*100);
+	for(var i=bound._southWest.lat; i<bound._northEast.lat; i+=1.0/precision) {
+		for(var j=bound._southWest.lng; j<bound._northEast.lng; j+=1.0/precision) {
+			var hashpos = parseInt(i*precision)+","+parseInt(j*precision); /* HASH FUNCTION hash function */
 			if(!pokemonList[0][hashpos]){
 				pokemonList[0][hashpos] = {time:0};
 			}
