@@ -1,22 +1,25 @@
 $('.desktop-header').remove();
 $('.adroom').remove();
+$("#map").css("height","100vh");
+map.invalidateSize();
 var offset = 0;
 var pauseVar = false;
 function scan(){
 	var cacheCount = 0;
 	var bound = map.getBounds();
 	var extra = false;
+	var delay = 100;
 	for(var i=bound._southWest.lat+offset; i<bound._northEast.lat; i+=0.01) {
 		for(var j=bound._southWest.lng+(extra?0.005:0)+offset; j<bound._northEast.lng; j+=0.01) {
-			setTimeout(throttledLoadCache, cacheCount*200, new L.LatLng(i,j));
-			if(Math.random() > 0.8){setTimeout(getPokemon, cacheCount*200, i, j);}
-			setTimeout(setPos, cacheCount++*200, new L.LatLng(i,j));
+			setTimeout(throttledLoadCache, cacheCount*delay, new L.LatLng(i,j));
+			if(Math.random() > 0.5){setTimeout(getPokemon, cacheCount*delay, i, j);}
+			setTimeout(setPos, cacheCount++*delay, new L.LatLng(i,j));
 		}
 		extra = !extra;
 	}
 	offset = (offset+0.003)%0.01;
 	if(!pauseVar){
-		setTimeout(scan,cacheCount*200);
+		setTimeout(scan,cacheCount*delay);
 	}else{
 		pauseVar = false;
 	}
