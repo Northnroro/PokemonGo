@@ -152,8 +152,21 @@ function getOutput(){
     downloadLink.click();
 	output = "";
 }
-jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json?", function(data){
-	pokemonList = data;
+
+// jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json?", function(data){
+// 	pokemonList = data;
+// 	setInterval(cacheOutput,10000);
+// 	setInterval(redrawMarker,30000);
+// 	scan();
+// 	resetDict();
+// 	addDict(1);
+// 	addDict(4);
+// 	addDict(7);
+// 	addDict(10);
+// 	addDict(25);
+// });
+
+	pokemonList = [];
 	setInterval(cacheOutput,10000);
 	setInterval(redrawMarker,30000);
 	scan();
@@ -163,17 +176,3 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json?
 	addDict(7);
 	addDict(10);
 	addDict(25);
-});
-
-// jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json", function(data){
-	// pokemonList = [];
-	// setInterval(cacheOutput,10000);
-	// setInterval(redrawMarker,30000);
-	// scan();
-	// resetDict();
-	// addDict(1);
-	// addDict(4);
-	// addDict(7);
-	// addDict(10);
-	// addDict(25);
-// });
