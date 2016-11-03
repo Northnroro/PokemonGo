@@ -442,6 +442,9 @@ function redrawMarker(){
 			}
 		}
 	}
+	$(".leaflet-marker-pane").children().sortDomElements(function(a,b){
+		return parseInt(a.innerText)-parseInt(b.innerText);
+	});
 }
 
 function redrawFog(){
