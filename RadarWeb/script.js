@@ -518,7 +518,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 	setTimeout(function(){
 		map.setView(new L.LatLng(13.75,100.55),13,{duration:1});
 		map.locate();
-		map.on("click",function(event){
+		/*map.on("click",function(event){
 			setTimeout(function(){
 				if($(".window.filterwindow.show").length == 0){
 					if(!markerAdded){
@@ -555,7 +555,7 @@ jQuery.getJSON("https://rawgit.com/Northnroro/PokemonGo/master/pokemon_map.json"
 					redrawMarker();
 				}
 			},200);
-		});
+		});*/
 		redrawMarker();
 	},1000);
 	$('.close').fadeIn();
