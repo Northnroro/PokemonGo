@@ -372,7 +372,7 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 ##################################################################################################;
 */
 
-setTimeou(function(){
+setTimeout(function(){
 $('.desktop-header').remove();
 $('.adroom').remove();
 $("#map").css("height","100vh");
