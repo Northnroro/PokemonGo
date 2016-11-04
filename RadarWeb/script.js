@@ -372,6 +372,12 @@ if(filtercookie){var filterlist=filtercookie.split(cookiedelimchar);
 ##################################################################################################;
 */
 
+setTimeou(function(){
+$('.desktop-header').remove();
+$('.adroom').remove();
+$("#map").css("height","100vh");
+map.invalidateSize();
+},5000);
 
 var pokemonList = [];
 var markerList = [];
