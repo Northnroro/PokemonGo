@@ -16,7 +16,7 @@ $.ajax({url:"https://api.myjson.com/bins/"+code, success: function(data) {
       	initQuota();
       	return;
 	}
-	var minus = 5;
+	var minus = 10;
 	if(quota > minus){
 		quota = minus;
 	}else{
@@ -65,7 +65,7 @@ $.ajax({url:"https://api.myjson.com/bins/"+code, success: function(data) {
 				      	initQuota();
 				      	return;
 					}
-					var minus = 5;
+					var minus = 10;
 					if(quota > minus){
 						quota = minus;
 					}else{

@@ -379,6 +379,14 @@ var currentPokemon = 0;
 
 var rareList = {}; //{1:true,4:true,7:true,25:true,27:true,35:true,37:true,39:true,50:true,52:true,56:true,58:true,63:true,66:true,74:true,77:true,81:true,86:true,88:true,90:true,96:true,100:true,111:true,113:true,115:true,122:true,123:true,124:true,125:true,126:true,128:true,131:true,132:true,137:true,138:true,140:true,143:true,147:true,150:true,151:true};
 
+$.fn.sortDomElements = (function() {
+	return function(comparator) {
+		return Array.prototype.sort.call(this, comparator).each(function(i) {
+			this.parentNode.appendChild(this);
+		});
+	};
+})();
+
 function redrawMarker(){
 	for(var index in markerList){
 		markerList[index].remove();
